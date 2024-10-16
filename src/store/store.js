@@ -4,7 +4,7 @@ import emailSlice from "@/features/emailSlice";
 
 export const store = configureStore({
   reducer: {
-    data: emailSlice,
+    email: emailSlice,
   },
 });
 
