@@ -25,3 +25,6 @@ body {
     text-wrap: balance;
   }
 }
+body {
+  @apply bg-background text-text;
+}

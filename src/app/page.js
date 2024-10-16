@@ -2,16 +2,16 @@
 
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import  FilterButtons  from '@/components/FilterButtons';
-import  EmailList  from '@/components/EmailList';
-import  EmailBody  from '@/components/EmailBody';
-
+import  {FilterButtons}  from '@/components/FilterButtons';
+import  {EmailList}  from '@/components/EmailList';
+import  {EmailBody}  from '@/components/EmailBody';
+import { fetchEmails } from '@/features/emailSlice';
 
 function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-   
+   dispatch(fetchEmails(1))
   }, [dispatch]);
 
   return (
