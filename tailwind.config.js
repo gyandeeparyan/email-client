@@ -8,14 +8,26 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-        accent: '#E54065',
+        accent: '#E54066',
         background: '#F4F5F9',
         border: '#CFD2DC',
         text: '#636363',
-        filter: '#E1E4EA',
-        read: '#F2F2F2',
+        filterButton: '#E1E4EA',
+        readBackground: '#F2F2F2',
+      },
+      animation: {
+        'slide-in': 'slideIn 0.3s ease-out',
+        'fade-in': 'fadeIn 0.3s ease-in',
+      },
+      keyframes: {
+        slideIn: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
       },
     },
   },
