@@ -6,8 +6,9 @@ export const FilterButtons = () => {
   const filter = useSelector((state) => state.email?.filter);
 
   return (
-    <div className="flex gap-2 p-4">
-      {['all', 'unread', 'read', 'favorite'].map((filterType) => (
+    <div className="flex gap-2 items-center justify-start p-4">
+        <p className="text-center ">Filter By:</p>
+      {[ 'unread', 'read', 'favorite'].map((filterType) => (
         <button
           key={filterType}
           onClick={() => dispatch(setFilter(filterType))}

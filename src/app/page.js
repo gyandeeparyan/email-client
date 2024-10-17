@@ -19,7 +19,7 @@ function Home() {
       <div className="container mx-auto p-4">
         <FilterButtons />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-white rounded-lg shadow animate-slide-in">
+          <div className="bg-background rounded-lg  animate-slide-in">
             <EmailList />
           </div>
           <EmailBody />
