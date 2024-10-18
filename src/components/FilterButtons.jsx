@@ -12,7 +12,7 @@ export const FilterButtons = () => {
         <button
           key={filterType}
           onClick={() => dispatch(setFilter(filterType))}
-          className={`px-4 py-2 rounded-full capitalize transition-colors
+          className={`px-4 py-1 rounded-full capitalize transition-colors
             ${filter === filterType ? 'bg-accent text-white' : 'bg-filterButton text-text'}`}
         >
           {filterType}
