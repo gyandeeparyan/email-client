@@ -22,6 +22,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
      <ReduxProvider>
+     <head><link rel="icon" href="/favicon.ico" sizes="any" /></head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

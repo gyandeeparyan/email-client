@@ -8,12 +8,6 @@ export const fetchEmails = createAsyncThunk(
   }
 );
 
-const saveToLocalStorage = (state) => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('emailState', JSON.stringify(state));
-    }
-  };
-
 export const fetchEmailBody = createAsyncThunk(
   'email/fetchEmailBody',
   async (id) => {
@@ -30,12 +24,31 @@ export const fetchAndSelectEmail = createAsyncThunk(
   }
 );
 
-const loadPersistedState = () => {
-  if (typeof window === 'undefined') return {};
+const saveToLocalStorage = (state) => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('emailState', JSON.stringify(state));
+    }
+  };
 
-  const savedState = localStorage.getItem('emailState');
-  return savedState ? JSON.parse(savedState) : {};
-};
+const loadPersistedState = () => {
+    if (typeof window === 'undefined') return {};
+  
+    try {
+      const savedState = localStorage.getItem('emailState');
+      if (!savedState) return {};
+  
+      const parsedState = JSON.parse(savedState);
+      // Add version checking if needed
+      if (parsedState.version !== 'your-current-version') {
+        localStorage.removeItem('emailState');
+        return {};
+      }
+      return parsedState;
+    } catch (error) {
+      console.error('Error loading persisted state:', error);
+      return {};
+    }
+  };
 
 const initialState = {
   emails: [],
