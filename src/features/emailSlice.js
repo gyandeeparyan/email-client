@@ -56,8 +56,8 @@ const initialState = {
   loading: false,
   filter: 'unread',
   currentPage: 1,
-  totalPages: 2, // assume some default value if not provided by API
-  ...loadPersistedState(), // Load from localStorage on initial load
+  totalPages: 2, 
+  ...loadPersistedState(),
 };
 
 const emailSlice = createSlice({
@@ -66,29 +66,28 @@ const emailSlice = createSlice({
   reducers: {
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload;
-      saveToLocalStorage(state); // Persist state change to localStorage
+      saveToLocalStorage(state); 
     },
     setFilter: (state, action) => {
       state.filter = action.payload;
-      saveToLocalStorage(state); // Persist state change to localStorage
+      saveToLocalStorage(state); 
     },
     markAsRead: (state, action) => {
       const email = state.emails.find(e => e.id === action.payload);
       if (email) {
         email.read = true;
-        saveToLocalStorage(state); // Persist the updated state to localStorage
-      }
+        saveToLocalStorage(state);       }
     },
     toggleFavorite: (state, action) => {
       const email = state.emails.find(e => e.id === action.payload);
       if (email) {
         email.favorite = !email.favorite;
-        saveToLocalStorage(state); // Persist the updated state to localStorage
+        saveToLocalStorage(state);
       }
     },
     setSelectedEmail: (state, action) => {
       state.selectedEmail = action.payload;
-      saveToLocalStorage(state); // Persist the selected email to localStorage
+      saveToLocalStorage(state); 
     }
   },
   extraReducers: (builder) => {
@@ -99,19 +98,19 @@ const emailSlice = createSlice({
       .addCase(fetchEmails.fulfilled, (state, action) => {
         state.loading = false;
         state.emails = action.payload.list;
-        saveToLocalStorage(state); // Save the fetched emails to localStorage
+        saveToLocalStorage(state); 
       })
       .addCase(fetchEmailBody.fulfilled, (state, action) => {
         state.selectedEmail = action.payload;
-        saveToLocalStorage(state); // Persist the selected email body to localStorage
+        saveToLocalStorage(state); 
       })
       .addCase(fetchAndSelectEmail.pending, (state) => {
         state.loading = true;
       })
       .addCase(fetchAndSelectEmail.fulfilled, (state, action) => {
         state.loading = false;
-        state.selectedEmail = action.payload.payload; // fetchEmailBody result is nested under payload
-        saveToLocalStorage(state); // Persist after fetching both emails and email body
+        state.selectedEmail = action.payload.payload; 
+        saveToLocalStorage(state); 
       })
       .addCase(fetchAndSelectEmail.rejected, (state) => {
         state.loading = false;

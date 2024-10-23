@@ -6,18 +6,21 @@ export const FilterButtons = () => {
   const filter = useSelector((state) => state.email?.filter);
 
   return (
-    <div className="flex gap-2 items-center justify-start p-4">
-        <p className="text-center ">Filter By:</p>
-      {[ 'unread', 'read', 'favorite'].map((filterType) => (
+    <section className="flex gap-2 items-center justify-start p-4">
+    <label className="text-center">Filter By:</label>
+    <div role="group" aria-label="Email Filters">
+      {['unread', 'read', 'favorite'].map((filterType) => (
         <button
           key={filterType}
           onClick={() => dispatch(setFilter(filterType))}
-          className={`px-4 py-1 rounded-full capitalize transition-colors
+          className={`px-4 py-1 m-2 rounded-full capitalize transition-colors
             ${filter === filterType ? 'bg-accent text-white' : 'bg-filterButton text-text'}`}
         >
           {filterType}
         </button>
       ))}
     </div>
+  </section>
+  
   );
 };

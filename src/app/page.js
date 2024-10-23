@@ -38,7 +38,7 @@ function Home() {
     }
   }, [dispatch, selectedEmail]);
 
-  // Pagination handlers
+ 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       dispatch(setCurrentPage(currentPage + 1));
