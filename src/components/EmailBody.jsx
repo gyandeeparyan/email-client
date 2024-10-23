@@ -2,12 +2,30 @@ import { useSelector, useDispatch } from 'react-redux';
 import { toggleFavorite } from '@/features/emailSlice';
 
 export const EmailBody = () => {
-  const { selectedEmail, emails } = useSelector((state) => state.email);
+  const { selectedEmail, emails ,filter} = useSelector((state) => state.email);
   const email = emails.find((email) => email.id == selectedEmail?.id);
   const { id, date, from, subject, short_description } = email || {};
   const avatarLetter = from?.name.charAt(0).toUpperCase();
 
   const dispatch = useDispatch();
+
+
+
+  const filteredEmails = emails?.filter(email => {
+    switch (filter) {
+      case 'read':
+        return email.read;
+      case 'unread':
+        return !email.read;
+      case 'favorite':
+        return email.favorite;
+      default:
+        return true;
+    }
+  });
+  if(filteredEmails.length === 0){
+    return null
+  }
 
   if (!selectedEmail) {
     return (
@@ -17,7 +35,9 @@ export const EmailBody = () => {
     );
   }
 
+ 
   return (
+    
     <section className="px-4">
       <article className="p-6 my-4 bg-white rounded-lg max-h-[80vh] overflow-y-scroll shadow animate-fade-in">
         <header className="flex items-center gap-4">
