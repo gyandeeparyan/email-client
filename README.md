@@ -42,7 +42,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd email-client
 ```
 
 Install dependencies
@@ -65,5 +65,5 @@ Start the server
 
 ## Feedback
 
-- https://sameeksha.vercel.app/u/gyan
+- [Send anonymous feedback](https://sameeksha.vercel.app/u/gyan?utm_feedback_type=git-roc8-email)
 
